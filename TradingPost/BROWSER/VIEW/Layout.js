@@ -111,7 +111,7 @@ TradingPost.Layout = CLASS((cls) => {
 							style : {
 								border : '1px solid #666',
 								backgroundColor : '#333',
-								marginBottom : -1
+								marginTop : -1
 							},
 							c : A({
 								style : {
@@ -123,7 +123,7 @@ TradingPost.Layout = CLASS((cls) => {
 								c : menuInfo.title,
 								on : {
 									tap : () => {
-										DPlayGames.GO(menuInfo.uri);
+										TradingPost.GO(menuInfo.uri);
 										hideMenu();
 									}
 								}
@@ -133,6 +133,11 @@ TradingPost.Layout = CLASS((cls) => {
 					
 					UANI.SHOW_SLIDE_DOWN({
 						node : menu
+					}, () => {
+						
+						EVENT_ONCE('tap', () => {
+							hideMenu();
+						});
 					});
 				}
 			};

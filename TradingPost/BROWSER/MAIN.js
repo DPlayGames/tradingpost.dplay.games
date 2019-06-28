@@ -28,6 +28,16 @@ TradingPost.MAIN = METHOD({
 				uri : '',
 				target : TradingPost.Home
 			});
+			
+			TradingPost.MATCH_VIEW({
+				uri : 'resource/sell',
+				target : TradingPost.SellResource
+			});
+			
+			TradingPost.MATCH_VIEW({
+				uri : 'item/sell',
+				target : TradingPost.SellItem
+			});
 		});
 	}
 });
