@@ -41,6 +41,7 @@
 		
 		<!-- TradingPost -->
 		<script>BOX('TradingPost');</script>
+		<script src="/TradingPost/BROWSER/DPlaySmartContract.js"></script>
 		<script src="/TradingPost/BROWSER/Contract/DPlayCoinContract.js"></script>
 		<script src="/TradingPost/BROWSER/Contract/DPlayTradingPostContract.js"></script>
 		<script src="/TradingPost/BROWSER/VIEW/Layout.js"></script>
@@ -53,7 +54,6 @@
 		RUN(() => {
 			
 			CONFIG.defaultBoxName = 'TradingPost';
-			CONFIG.ethereumNetworkName = ethereumNetworkName;
 			
 			FOR_BOX((box) => {
 				if (box.OVERRIDE !== undefined) {
