@@ -109,15 +109,14 @@ TradingPost.Layout = CLASS((cls) => {
 						
 						menu.append(LI({
 							style : {
-								border : '1px solid #666',
-								backgroundColor : '#333',
-								marginTop : -1
+								borderBottom : '1px solid #000',
+								backgroundColor : '#333'
 							},
 							c : A({
 								style : {
 									width : 150,
 									display : 'block',
-									padding : 10,
+									padding : 8,
 									textAlign : 'center'
 								},
 								c : menuInfo.title,
