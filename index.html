@@ -28,16 +28,17 @@
 			}
 		}
 		</script>
+		<script src="/DPlayInventory-web3-polyfill.js"></script>
+		<script src="/DSide-web3-polyfill.js"></script>
 		
 		<script src="/UPPERCASE-CORE/BROWSER.js"></script>
+		
 		<!-- BOX -->
-		<script>global.oldWeb3 = global.web3;</script>
-		<script>BOX('SmartContract');</script>
-		<script src="/BOX/SmartContract/BROWSER.js"></script>
 		<script>BOX('UUI');</script>
 		<script src="/BOX/UUI/BROWSER.js"></script>
 		<script>BOX('UANI');</script>
 		<script src="/BOX/UANI/BROWSER.js"></script>
+		
 		<!-- TradingPost -->
 		<script>BOX('TradingPost');</script>
 		<script src="/TradingPost/BROWSER/Contract/DPlayCoinContract.js"></script>
@@ -51,31 +52,21 @@
 		<script>
 		RUN(() => {
 			
-			let isUsingOldWeb3;
-			if (global.oldWeb3 !== undefined) {
-				global.web3 = global.oldWeb3;
-				global.SmartContract = SmartContractForOldWeb3;
-				isUsingOldWeb3 = true;
-			}
+			CONFIG.defaultBoxName = 'TradingPost';
+			CONFIG.ethereumNetworkName = ethereumNetworkName;
 			
-			SmartContract.getEthereumNetworkName((ethereumNetworkName) => {
-				
-				CONFIG.defaultBoxName = 'TradingPost';
-				CONFIG.ethereumNetworkName = ethereumNetworkName;
-				
-				FOR_BOX((box) => {
-					if (box.OVERRIDE !== undefined) {
-						box.OVERRIDE();
-					}
-				});
-			
-				INIT_OBJECTS();
-			
-				FOR_BOX((box) => {
-					if (box.MAIN !== undefined) {
-						box.MAIN();
-					}
-				});
+			FOR_BOX((box) => {
+				if (box.OVERRIDE !== undefined) {
+					box.OVERRIDE();
+				}
+			});
+		
+			INIT_OBJECTS();
+		
+			FOR_BOX((box) => {
+				if (box.MAIN !== undefined) {
+					box.MAIN();
+				}
 			});
 		});
 		</script>
