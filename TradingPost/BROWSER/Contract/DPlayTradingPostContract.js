@@ -1,4 +1,4 @@
-global.DPlayStoreContract = OBJECT({
+global.DPlayTradingPostContract = OBJECT({
 	
 	preset : () => {
 		return DPlaySmartContract;

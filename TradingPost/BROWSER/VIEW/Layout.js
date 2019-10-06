@@ -29,12 +29,7 @@ TradingPost.Layout = CLASS((cls) => {
 						top : 30
 					},
 					c : A({
-						c : IMG({
-							style : {
-								width : 109
-							},
-							src : '/TradingPost/R/logo.png'
-						}),
+						c : MSG('TITLE') + ' alpha',
 						on : {
 							tap : () => {
 								TradingPost.GO('');
@@ -64,81 +59,61 @@ TradingPost.Layout = CLASS((cls) => {
 					}),
 					on : {
 						tap : () => {
-							toggleMenu();
+							openMenu();
 						}
 					}
 				})]
 			}).appendTo(BODY);
 			
-			let menu;
-			
-			// 우측 상단 메뉴를 열거나 닫습니다.
-			let toggleMenu = self.toggleMenu = () => {
+			let openMenu = self.openMenu = () => {
 				
-				let hideMenu = () => {
+				let menu = UL({
+					style : {
+						position : 'absolute',
+						right : 30,
+						top : 70
+					}
+				}).appendTo(BODY);
+				
+				EACH([{
+					title : MSG('MENU_MY_SALES_BUTTON'),
+					uri : 'mysales'
+				}, {
+					title : MSG('MENU_SELL_RESOURCE_BUTTON'),
+					uri : 'sell/resource'
+				}, {
+					title : MSG('MENU_SELL_ITEM_BUTTON'),
+					uri : 'sell/item'
+				}, {
+					title : MSG('MENU_SELL_UNIQUE_ITEM_BUTTON'),
+					uri : 'sell/uniqueitem'
+				}], (menuInfo, index) => {
 					
-					UANI.HIDE_SLIDE_UP({
-						node : menu
-					}, () => {
-						menu.remove();
-						menu = undefined;
-					});
-				};
-				
-				if (menu !== undefined) {
-					hideMenu();
-				}
-				
-				else {
-					
-					menu = UL({
+					menu.append(LI({
 						style : {
-							position : 'absolute',
-							right : 30,
-							top : 70
-						}
-					}).appendTo(BODY);
-					
-					EACH([{
-						title : '자원 판매',
-						uri : 'resource/sell'
-					}, {
-						title : '아이템 판매',
-						uri : 'item/sell'
-					}], (menuInfo, index) => {
-						
-						menu.append(LI({
+							borderBottom : '1px solid #000',
+							backgroundColor : '#333'
+						},
+						c : A({
 							style : {
-								borderBottom : '1px solid #000',
-								backgroundColor : '#333'
+								width : 150,
+								display : 'block',
+								padding : 8,
+								textAlign : 'center'
 							},
-							c : A({
-								style : {
-									width : 150,
-									display : 'block',
-									padding : 8,
-									textAlign : 'center'
-								},
-								c : menuInfo.title,
-								on : {
-									tap : () => {
-										TradingPost.GO(menuInfo.uri);
-										hideMenu();
-									}
+							c : menuInfo.title,
+							on : {
+								touchstart : () => {
+									TradingPost.GO(menuInfo.uri);
 								}
-							})
-						}));
-					});
-					
-					UANI.SHOW_SLIDE_DOWN({
-						node : menu
-					}, () => {
-						
-						EVENT_ONCE('tap', () => {
-							hideMenu();
-						});
-					});
-				}
+							}
+						})
+					}));
+				});
+				
+				EVENT_ONCE('touchstart', () => {
+					menu.remove();
+				});
 			};
 			
 			inner.on('close', () => {

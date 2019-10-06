@@ -493,6 +493,10 @@ else {
 				
 				// 계약의 이벤트 핸들링
 				contract.allEvents((error, info) => {
+					
+					//TODO: TEST
+					console.log(info);
+					
 					if (error === TO_DELETE) {
 						
 						let args = info.args;

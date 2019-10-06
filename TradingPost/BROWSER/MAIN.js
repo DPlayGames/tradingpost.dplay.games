@@ -15,13 +15,18 @@ TradingPost.MAIN = METHOD({
 			});
 			
 			TradingPost.MATCH_VIEW({
-				uri : 'resource/sell',
+				uri : 'sell/resource',
 				target : TradingPost.SellResource
 			});
 			
 			TradingPost.MATCH_VIEW({
-				uri : 'item/sell',
+				uri : 'sell/item',
 				target : TradingPost.SellItem
+			});
+			
+			TradingPost.MATCH_VIEW({
+				uri : 'sell/uniqueitem',
+				target : TradingPost.SellUniqueItem
 			});
 		});
 	}
