@@ -381,7 +381,7 @@ else {
 			
 			getAccountId((accountId) => {
 				
-				web3.personal.sign(text, accountId.toLowerCase(), (error, hash) => {
+				web3.personal.sign(web3.fromUtf8(text), accountId.toLowerCase(), (error, hash) => {
 					
 					// 오류 발생
 					if (error !== TO_DELETE) {
@@ -494,7 +494,6 @@ else {
 				// 계약의 이벤트 핸들링
 				contract.allEvents((error, info) => {
 					
-					//TODO: TEST
 					console.log(info);
 					
 					if (error === TO_DELETE) {
@@ -576,6 +575,15 @@ else {
 					// 아무런 값이 없으면 재시도
 					else if (result === TO_DELETE || result.blockHash === TO_DELETE) {
 						retry();
+					}
+					
+					// 트랜잭선 오류 발생
+					else if (result.status === '0x0') {
+						if (errorHandler !== undefined) {
+							errorHandler('Transaction Error');
+						} else {
+							SHOW_ERROR(methodInfo.name, 'Transaction Error', params);
+						}
 					}
 					
 					// 트랜잭션 완료

@@ -42,7 +42,8 @@ TradingPost.Home = CLASS({
 					
 					resourceSaleList.append(DIV({
 						style : {
-							padding : 20
+							padding : 20,
+							cursor : 'pointer'
 						},
 						c : [DIV({
 							c : saleId
@@ -58,7 +59,13 @@ TradingPost.Home = CLASS({
 							c : description
 						}), DIV({
 							c : createTime
-						})]
+						})],
+						on : {
+							tap : () => {
+								
+								TradingPost.GO('resource/' + saleId);
+							}
+						}
 					}));
 				});
 			});
@@ -72,7 +79,8 @@ TradingPost.Home = CLASS({
 					
 					itemSaleList.append(DIV({
 						style : {
-							padding : 20
+							padding : 20,
+							cursor : 'pointer'
 						},
 						c : [DIV({
 							c : saleId
@@ -88,7 +96,13 @@ TradingPost.Home = CLASS({
 							c : description
 						}), DIV({
 							c : createTime
-						})]
+						})],
+						on : {
+							tap : () => {
+								
+								TradingPost.GO('item/' + saleId);
+							}
+						}
 					}));
 				});
 			});
@@ -102,7 +116,8 @@ TradingPost.Home = CLASS({
 					
 					uniqueItemSaleList.append(DIV({
 						style : {
-							padding : 20
+							padding : 20,
+							cursor : 'pointer'
 						},
 						c : [DIV({
 							c : saleId
@@ -118,7 +133,13 @@ TradingPost.Home = CLASS({
 							c : description
 						}), DIV({
 							c : createTime
-						})]
+						})],
+						on : {
+							tap : () => {
+								
+								TradingPost.GO('uniqueitem/' + saleId);
+							}
+						}
 					}));
 				});
 			});
